@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New Account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href="{{ url_for('static',filename='styles/style2.css')}}" rel="stylesheet" type="text/css">
+</head>
+<body background="{{ url_for('static',filename='/img/login_background.jpg')}}">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{{ url_for('static',filename='/img/MANGOCHAIN3.png')}}" height="50"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <form class="form-inline">
+                <a href="/login"><button class="btn btn-outline-success" type="button" >Login</button></a>
+            </form>
+          </ul>
+        </div>
+    </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} {% if category =='error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
+<!-- Login  -->
+    <div class="loginbox" style="width: 320px; height: 450px; background: rgba(0,0,0,0.8); color: #fff; top: 10%; left: 50%; position: absolute; transform: translate(-50%, 25%); box-sizing: border-box; padding: 70px 30px;">
+        <img src="{{ url_for('static',filename='/img/user.png')}}" class="avatar">
+        <h1>Exporter Registration</h1>
+        <form method="POST">
+            <!-- <label for="custom">Category  &nbsp  &nbsp  &nbsp   &nbsp &nbsp &nbsp &nbsp</label> -->
+                <!-- <select id="custom">
+                    <option value="Exporter">Exporter</option>
+                </select> -->
+            <p>IE Code</p>
+            <input type="text" id="iecode" name="iecode" style="width:100%;" placeholder="Enter IE Code" required>
+            <p>Company Name</p>
+            <input type="text" name="companyname" id="companyname" style="width:100%;" placeholder="Enter Company Name" required>
+            <p>Email ID</p>
+            <input type="email" name="email" id="email" style="width:100%;" placeholder="Enter Email ID" required>
+            <p>Password</p>
+            <input type="password" name="password" id="password" style="width:100%;" placeholder="Enter Password" required>
+            <button type="submit" name="" style="border: none; outline: none; height: 35px;background: #fb2525; color: #fff; font-size: 18px; border-radius: 20px; width: 100%;">Create</button>
+            
+        </form>
+    </div>
+</body>
+</html>

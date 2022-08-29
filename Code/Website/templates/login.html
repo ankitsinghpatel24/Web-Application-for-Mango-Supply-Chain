@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href= "{{ url_for('static',filename='styles/style2.css')}}", rel="stylesheet" type="text/css" >
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{{ url_for('static',filename='/img/MANGOCHAIN3.png')}}" height=50 ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <form class="form-inline">
+                <a href="/login"><button class="btn btn-outline-success" type="button" >Login</button></a>
+            </form>
+          </ul>
+        </div>
+    </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} {% if category =='error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
+<!-- Login  -->
+    <div class="loginbox" style="width: 320px; height: 450px; background: rgba(0,0,0,0.8); color: #fff; top: 10%; left: 50%; position: absolute; transform: translate(-50%, 25%); box-sizing: border-box; padding: 70px 30px;">
+        <img src="{{ url_for('static',filename='/img/user.png')}}" class="avatar">
+        <h1>Log In to Your Account</h1>
+        <form method="POST">
+            <label for="type">Category  &nbsp  &nbsp  &nbsp   &nbsp &nbsp &nbsp &nbsp</label>
+                <select name="type" id="type">
+                    <option value="Exporter">Exporter</option>
+                    <option value="Packing House">Packing House</option>
+                    <option value="Regulatory Authority">Regulatory Authority</option>
+                    <option value="Laboratory">Laboratory</option>
+                    <option value="Logistics">Logistics</option>
+                </select>
+            <label for="email">Email ID</label>
+            <br>
+            <input type="email" name="email" id="email" placeholder="Enter Email ID" style="width:100%;" >
+            <br>
+            <label for="password">Password</label>
+            <br>
+            <input type="password" name="password" id="password" placeholder="Enter Password" style="width:100%;" >
+            <button class="btn btn-outline-success" type="submit" id="submit">Login</button>
+            <!-- <a href="dashboard.html"><input type="submit"  name="SUBMITBUTTON" value="Login"></a> -->
+            <a href="forgot.html">Forgot your password?</a><br>
+            <p>Don't have an account? <a href="/signup">Signup</a></p>
+
+            
+        </form>
+    </div>
+</body>
+
+</html>
